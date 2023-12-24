@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getPokemons, changeFilter } from '../redux/actions';
 import Pokemon from '../components/Pokemon';
 import SearchFilter from '../components/searchFilter';
-import CategoryFilter from '../components/CategoryFilter';
+// import CategoryFilter from '../components/CategoryFilter';
 import '../styles/Pokemon.css';
 
 const PokemonList = ({
@@ -17,19 +17,19 @@ const PokemonList = ({
     getPokemons();
   }, []);
 
-  const handleFilterChange = e => {
-    const { value } = e.target;
-    changeFilter(value);
-  };
+  // const handleFilterChange = e => {
+  //   const { value } = e.target;
+  //   changeFilter(value);
+  // };
 
-  const typefilteredPokemons = () => (filter === 'ALL' ? pokemons : pokemons.filter(pokemon => {
-    const arr = pokemon.types;
+  // const typefilteredPokemons = () => (filter === 'ALL' ? pokemons : pokemons.filter(pokemon => {
+  //   const arr = pokemon.types;
 
-    for (let i = 0; i < arr.length; i += 1) {
-      if (arr[i].type.name === filter) return true;
-    }
-    return false;
-  }));
+  //   for (let i = 0; i < arr.length; i += 1) {
+  //     if (arr[i].type.name === filter) return true;
+  //   }
+  //   return false;
+  // }));
   
   const handleSearchInputChange = (event) => {
     console.log(event.target.value);
@@ -40,15 +40,15 @@ const PokemonList = ({
     return item.name.toLowerCase().includes(searchInput.toLowerCase());
   };
 
-  // const filteredPokemons = () => (pokemons.filter(searchFilter));
+  const filteredPokemons = () => (pokemons.filter(searchFilter));
 
   return pokemons === null ? <h1>Loading....</h1> : (
     <div>
-    <CategoryFilter handleChange={handleFilterChange} />
+    {/* <CategoryFilter handleChange={handleFilterChange} /> */}
     
       <SearchFilter searchInput={searchInput} setSearchInput={setSearchInput} handleSubmit={searchFilter} handleSearchInputChange={handleSearchInputChange} />
       <div className="row">
-        {typefilteredPokemons().map(pokemon => (
+        {filteredPokemons().map(pokemon => (
           <Pokemon key={pokemon.id} pokemon={pokemon} />
         ))}
       </div>
