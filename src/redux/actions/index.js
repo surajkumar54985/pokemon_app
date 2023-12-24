@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { GET_POKEMONS, GET_POKEMON } from '../constants/actionTypes';
-
+import { GET_POKEMONS, GET_POKEMON, CHANGE_FILTER } from '../constants/actionTypes';
 export const getPokemons = () => async dispatch => {
   try {
     const allPokemon = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=1000');
@@ -34,3 +33,8 @@ export const getPokemon = (id) => async dispatch => {
     });
   }
 };
+
+export const changeFilter = filter => ({
+  type: CHANGE_FILTER,
+  filter,
+});
