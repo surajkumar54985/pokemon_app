@@ -24,9 +24,6 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-      "rules": {
-        "no-undef": "warn"
-    },
     "extends": [
       "react-app",
       "react-app/jest"
